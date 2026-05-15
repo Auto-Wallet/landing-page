@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output (regenerated from source on deploy)
+dist/
+
+# Cloudflare Wrangler local state
+.wrangler/
+
+# Logs
+*.log
+npm-debug.log*
+bun-debug.log*
+
+# Environment
+.env
+.env.*
+.dev.vars
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo

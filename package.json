@@ -1,0 +1,13 @@
+{
+  "name": "auto-wallet-landing-page",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --bun serve.ts",
+    "start": "bun --bun serve.ts"
+  },
+  "devDependencies": {
+    "wrangler": "^4.90.0"
+  }
+}
