@@ -22,6 +22,7 @@
     </a>
     <div class="nav-links">
       <a href="#whitelist">Auto-sign</a>
+      <a href="#highlights">Highlights</a>
       <a href="#features">Features</a>
       <a href="#security">Security</a>
       <a href="#eips">EIPs</a>
@@ -245,6 +246,342 @@
   </div>
 </section>
 
+<!-- ============== HIGHLIGHTS ============== -->
+<section class="section section-tight" id="highlights" style="padding-top:30px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Headline features</span>
+      <h2 class="sec-title">Three superpowers no other wallet ships.</h2>
+      <p class="sec-sub">
+        Auto-signing is only safe when you can see what you're about to sign,
+        only useful when you can also <em>watch</em> wallets you don't own, and
+        only complete when you can move value <em>across chains</em> without
+        bouncing through a separate dApp. Auto Wallet gives you all three.
+      </p>
+    </div>
+
+    <div class="hl-grid">
+
+      <!-- Highlight 1: Pre-tx balance change simulation -->
+      <article class="hl hl-sim">
+        <div class="hl-head">
+          <div class="hl-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            #01 · Tripwire
+          </div>
+          <h3 class="hl-title">See every balance change <em>before</em> you sign.</h3>
+          <p class="hl-body">
+            Every transaction — manual or auto — is replayed on a fork first.
+            Auto Wallet returns the <b>signed delta</b> for every address and every
+            ERC-20 involved. If an unknown address quietly gains value, or a token
+            you didn't expect moves, the tripwire fires and routes the tx to manual
+            approval instead. <span class="dim">No more blind-signing a "swap" that
+            secretly drains an approval.</span>
+          </p>
+        </div>
+
+        <!-- Mock simulation preview card -->
+        <div class="sim-card" aria-hidden="true">
+          <div class="sim-card-head">
+            <span class="sim-tag">
+              <span class="sim-pulse"></span>
+              Simulation preview
+            </span>
+            <span class="sim-chain">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 17.97 4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0 4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"/></svg>
+              Ethereum · block <span class="mono">25 410 388</span>
+            </span>
+          </div>
+
+          <div class="sim-rows">
+            <div class="sim-row your">
+              <div class="sim-who">
+                <span class="sim-avatar you">YOU</span>
+                <div>
+                  <div class="sim-addr">0x7A2c…91eF</div>
+                  <div class="sim-label">your wallet</div>
+                </div>
+              </div>
+              <div class="sim-deltas">
+                <span class="d-neg">−0.500 ETH</span>
+                <span class="d-pos">+1,847.32 USDC</span>
+              </div>
+            </div>
+
+            <div class="sim-row">
+              <div class="sim-who">
+                <span class="sim-avatar router">UR</span>
+                <div>
+                  <div class="sim-addr">0x68b3…2D45</div>
+                  <div class="sim-label">UniversalRouter</div>
+                </div>
+              </div>
+              <div class="sim-deltas">
+                <span class="d-zero">net 0</span>
+              </div>
+            </div>
+
+            <div class="sim-row">
+              <div class="sim-who">
+                <span class="sim-avatar pool">V3</span>
+                <div>
+                  <div class="sim-addr">0x88e6…5640</div>
+                  <div class="sim-label">UniV3 USDC/ETH pool</div>
+                </div>
+              </div>
+              <div class="sim-deltas">
+                <span class="d-pos">+0.500 ETH</span>
+                <span class="d-neg">−1,847.32 USDC</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sim-verdict ok">
+            <span class="v-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <div class="v-text">
+              <b>No unexpected recipients.</b>
+              <span>Safe to auto-sign · gas 142 871</span>
+            </div>
+            <span class="v-pin mono">sim&nbsp;74bc6b62</span>
+          </div>
+        </div>
+
+        <!-- Supported chains -->
+        <div class="hl-foot">
+          <div class="hl-foot-ttl">Simulation runs on</div>
+          <div class="chain-grid">
+            <span class="chain-chip">Ethereum</span>
+            <span class="chain-chip">BNB Chain</span>
+            <span class="chain-chip">Polygon</span>
+            <span class="chain-chip">Arbitrum</span>
+            <span class="chain-chip">Optimism</span>
+            <span class="chain-chip">Base</span>
+            <span class="chain-chip">Avalanche</span>
+            <span class="chain-chip">Linea</span>
+            <span class="chain-chip">zkSync Era</span>
+            <span class="chain-chip">Scroll</span>
+            <span class="chain-chip">Mantle</span>
+            <span class="chain-chip">Gnosis</span>
+            <span class="chain-chip">Celo</span>
+            <span class="chain-chip">Blast</span>
+            <span class="chain-chip">Mode</span>
+            <span class="chain-chip">Polygon&nbsp;zkEVM</span>
+            <span class="chain-chip">Arbitrum&nbsp;Nova</span>
+            <span class="chain-chip">Fantom</span>
+            <span class="chain-chip">Moonbeam</span>
+            <span class="chain-chip">Cronos</span>
+            <span class="chain-chip native">Wanchain&nbsp;<span class="chip-tag">debug_rpc</span></span>
+            <span class="chain-chip more">+ 9 testnets</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Highlight 2: Watch-only accounts -->
+      <article class="hl hl-watch">
+        <div class="hl-head">
+          <div class="hl-badge coral">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            #02 · View-only
+          </div>
+          <h3 class="hl-title">Watch any wallet. <em>Zero</em> keys required.</h3>
+          <p class="hl-body">
+            Paste an address — that's it. Auto Wallet adds it as a <b>watch-only
+            account</b> you can switch into from the header, with full token
+            balances, history, and dApp connection support (read-only RPC calls
+            answer normally; signing requests are blocked at the provider). Pair
+            it with a hardware wallet for a hot/cold split, monitor a vault, or
+            spy on your favorite whale — without ever holding their keys.
+          </p>
+        </div>
+
+        <!-- Mock watch-only account card -->
+        <div class="watch-card" aria-hidden="true">
+          <div class="watch-top">
+            <span class="acct-pill">
+              <span class="pulse"></span>
+              Vitalik.eth
+              <span class="ad">0xd8dA…6045</span>
+            </span>
+            <span class="watch-pill">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              VIEW-ONLY
+            </span>
+          </div>
+
+          <div class="watch-bal">
+            <div class="watch-bal-num">348.<span class="dec">7102</span></div>
+            <div class="watch-bal-sym">ETH</div>
+          </div>
+
+          <div class="watch-tokens">
+            <div class="watch-row">
+              <span class="t-sym usdc">U</span>
+              <span class="t-name">USDC</span>
+              <span class="t-val mono">12,840.00</span>
+            </div>
+            <div class="watch-row">
+              <span class="t-sym mkr">M</span>
+              <span class="t-name">MKR</span>
+              <span class="t-val mono">214.61</span>
+            </div>
+          </div>
+
+          <div class="watch-sign-blocked">
+            <span class="block-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <div class="block-text">
+              <b>eth_sendTransaction&nbsp;→&nbsp;blocked</b>
+              <span>watch-only · no key material loaded</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hl-foot">
+          <div class="hl-foot-ttl">Use cases</div>
+          <div class="use-list">
+            <div class="use-row">
+              <span class="use-num">01</span>
+              <span class="use-text"><b>Hot/cold pair</b> — sign on Ledger, watch in browser</span>
+            </div>
+            <div class="use-row">
+              <span class="use-num">02</span>
+              <span class="use-text"><b>Treasury audits</b> — monitor a vault without custody risk</span>
+            </div>
+            <div class="use-row">
+              <span class="use-num">03</span>
+              <span class="use-text"><b>Whale tracking</b> — load any ENS, watch their moves live</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Highlight 3: Built-in cross-chain swap (xflows) -->
+      <article class="hl hl-swap hl-full">
+        <div class="hl-swap-grid">
+          <div class="hl-head">
+            <div class="hl-badge teal">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+              #03 · Cross-chain
+            </div>
+            <h3 class="hl-title">Swap across chains <em>without</em> leaving the popup.</h3>
+            <p class="hl-body">
+              Auto Wallet ships a built-in cross-chain Swap tab powered by the
+              <a class="hl-link" href="https://xflows.wanchain.org/api/v3" target="_blank" rel="noopener"><b>xflows.wanchain.org</b></a>
+              aggregator API. Pick a token on any source chain, a token on any
+              destination chain, and Auto Wallet handles the quote, the
+              ERC-20 approval (with <b>USDT-style allowance reset</b> when needed),
+              the source-chain tx, and tracks the bridge/swap to completion —
+              all inside the popup. No tab-hopping, no copy-pasting bridge UIs,
+              no signing on an unfamiliar site.
+            </p>
+          </div>
+
+          <!-- Mock cross-chain quote card -->
+          <div class="swap-card" aria-hidden="true">
+            <div class="swap-head">
+              <span class="swap-tag">Cross-chain quote</span>
+              <span class="swap-pulse-row">
+                <span class="swap-pulse"></span>
+                live · 12s
+              </span>
+            </div>
+
+            <div class="swap-leg from">
+              <div class="leg-label">You pay</div>
+              <div class="leg-row">
+                <span class="leg-amount mono">1.000</span>
+                <span class="leg-token">
+                  <span class="t-glyph eth">Ξ</span>
+                  ETH
+                </span>
+              </div>
+              <div class="leg-chain">
+                <span class="chain-pill">Ethereum</span>
+              </div>
+            </div>
+
+            <div class="swap-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </div>
+
+            <div class="swap-leg to">
+              <div class="leg-label">You receive</div>
+              <div class="leg-row">
+                <span class="leg-amount mono">3,694.<span class="dec">41</span></span>
+                <span class="leg-token">
+                  <span class="t-glyph usdc">$</span>
+                  USDC
+                </span>
+              </div>
+              <div class="leg-chain">
+                <span class="chain-pill arb">Arbitrum One</span>
+              </div>
+            </div>
+
+            <div class="swap-route">
+              <div class="route-row">
+                <span class="route-k">Route</span>
+                <span class="route-v">Ethereum → Wanchain&nbsp;bridge → Arbitrum</span>
+              </div>
+              <div class="route-row">
+                <span class="route-k">Bridge&nbsp;fee</span>
+                <span class="route-v"><b>0.0032&nbsp;ETH</b> <span class="muted">≈ $11.83</span></span>
+              </div>
+              <div class="route-row">
+                <span class="route-k">ETA</span>
+                <span class="route-v"><b>~ 3&nbsp;min</b></span>
+              </div>
+            </div>
+
+            <div class="swap-action">
+              <span class="swap-btn">Approve&nbsp;&amp;&nbsp;Swap</span>
+              <span class="swap-pwr mono">via xflows.wanchain.org</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hl-foot">
+          <div class="hl-foot-ttl">What the popup does for you, end-to-end</div>
+          <div class="swap-steps">
+            <div class="swap-step">
+              <span class="step-num">01</span>
+              <div class="step-text">
+                <b>Quote</b>
+                <span><code>POST /quote</code> · live USD value, fees, ETA, route</span>
+              </div>
+            </div>
+            <div class="swap-step">
+              <span class="step-num">02</span>
+              <div class="step-text">
+                <b>Approve safely</b>
+                <span>USDT-style <code>approve(0)</code> reset before re-approving</span>
+              </div>
+            </div>
+            <div class="swap-step">
+              <span class="step-num">03</span>
+              <div class="step-text">
+                <b>Build &amp; sign</b>
+                <span><code>POST /buildTx</code> → tripwire&nbsp;sim → your key (or Ledger)</span>
+              </div>
+            </div>
+            <div class="swap-step">
+              <span class="step-num">04</span>
+              <div class="step-text">
+                <b>Track</b>
+                <span><code>GET /status</code> polled until destination tx mines</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 <!-- ============== FEATURES ============== -->
 <section class="section section-tight" id="features" style="padding-top:30px">
   <div class="wrap">
@@ -260,15 +597,24 @@
         </div>
         <div class="feat-title">Multi-account, one password</div>
         <div class="feat-body">Create or import unlimited accounts via private key or mnemonic. Master password unlocks all of them — switch from the header dropdown.</div>
-        <div class="feat-mini"><span class="pill">PRIV-KEY</span><span class="pill">MNEMONIC</span><span class="pill">LEDGER</span></div>
+        <div class="feat-mini"><span class="pill">PRIV-KEY</span><span class="pill">MNEMONIC</span></div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-icon coral">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 11v2M10 11v2M14 11v2M18 11v2"/></svg>
+        </div>
+        <div class="feat-title">Ledger hardware wallet, first-class</div>
+        <div class="feat-body">Plug in over <b>WebHID</b> and Auto Wallet talks to the device directly — no Ledger Live bridge. Signs transactions, <span class="mono" style="font-family:var(--font-mono);font-size:12px">personal_sign</span>, and EIP-712 typed data, with both Live <span class="mono" style="font-family:var(--font-mono);font-size:12px">m/44'/60'/x'/0/0</span> and Legacy <span class="mono" style="font-family:var(--font-mono);font-size:12px">m/44'/60'/0'/x</span> derivation paths. Pair it with a watch-only twin for a clean hot/cold split.</div>
+        <div class="feat-mini"><span class="pill">WebHID</span><span class="pill">EIP-712</span><span class="pill">LIVE&nbsp;+&nbsp;LEGACY</span></div>
       </div>
 
       <div class="feat">
         <div class="feat-icon coral">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
         </div>
-        <div class="feat-title">6 chains preloaded. Add unlimited.</div>
-        <div class="feat-body">Ethereum, Polygon, Arbitrum, Optimism, BNB Chain, Avalanche out of the box. Add any EVM chain — dApps can request via <span class="mono" style="font-family:var(--font-mono);font-size:12px">wallet_addEthereumChain</span> with explicit user approval.</div>
+        <div class="feat-title">31 chains preloaded. Add unlimited.</div>
+        <div class="feat-body">22 mainnets — Ethereum, BNB, Polygon, Arbitrum, Optimism, Base, Avalanche, Linea, zkSync Era, Scroll, Mantle, Celo, Blast, Wanchain and more — plus 9 testnets out of the box. Add any EVM chain — dApps can request via <span class="mono" style="font-family:var(--font-mono);font-size:12px">wallet_addEthereumChain</span> with explicit user approval.</div>
         <div class="feat-mini"><span class="pill">EIP-3085</span><span class="pill">EIP-3326</span><span class="pill">HTTPS-only</span></div>
       </div>
 
@@ -281,7 +627,7 @@
         <div class="feat-mini"><span class="pill">EIP-747</span><span class="pill">AUTO-METADATA</span></div>
       </div>
 
-      <div class="feat wide">
+      <div class="feat">
         <div class="feat-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
         </div>
