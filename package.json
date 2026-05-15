@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "bun --bun serve.ts",
     "start": "bun --bun serve.ts",
-    "build": "rm -rf dist && mkdir -p dist && cp index.html styles.css demo.js dist/ && cp -R public dist/",
+    "build": "rm -rf dist && mkdir -p dist && cp index.html styles.css demo.js robots.txt sitemap.xml og-image.jpg dist/ && cp -R public dist/",
     "deploy": "bun run build && wrangler deploy"
   },
   "devDependencies": {
