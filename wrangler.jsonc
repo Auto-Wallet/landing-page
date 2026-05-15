@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "landing-page",
+  "name": "auto-wallet",
   "compatibility_date": "2026-05-15",
   "observability": { "enabled": true },
   "assets": { "directory": "dist" }
