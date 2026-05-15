@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "bun --bun serve.ts",
-    "start": "bun --bun serve.ts"
+    "start": "bun --bun serve.ts",
+    "build": "rm -rf dist && mkdir -p dist && cp index.html styles.css demo.js dist/ && cp -R public dist/",
+    "deploy": "bun run build && wrangler pages deploy dist --project-name=auto-wallet"
   },
   "devDependencies": {
     "wrangler": "^4.90.0"
