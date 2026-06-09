@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Auto Wallet — Stop clicking Confirm</title>
-<meta name="description" content="Minimal auto-signing Chrome wallet for EVM chains. Whitelist trusted dApps and let routine transactions sign themselves — open source, MV3, EIP-7702 ready." />
-<meta name="keywords" content="auto wallet, auto-signing wallet, Chrome wallet, EVM wallet, MetaMask alternative, whitelist wallet, dApp wallet, web3 wallet, EIP-7702, MV3 wallet" />
+<meta name="description" content="Minimal wallet suite for EVM chains: Auto Wallet for Chrome with whitelist auto-signing, plus AutoDesktop, a native desktop wallet and dApp browser for macOS and Windows." />
+<meta name="keywords" content="auto wallet, auto-signing wallet, Chrome wallet, desktop wallet, Tauri wallet, EVM wallet, MetaMask alternative, whitelist wallet, dApp browser, web3 wallet, EIP-7702, MV3 wallet" />
 <meta name="author" content="lolieatapple" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="theme-color" content="#0b0b0f" />
@@ -16,7 +16,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Auto Wallet" />
 <meta property="og:title" content="Auto Wallet — Stop clicking Confirm" />
-<meta property="og:description" content="A minimal Chrome wallet for EVM chains with per-rule whitelist auto-signing. Trust a dApp, a contract, or a single function selector — Auto Wallet signs the rest." />
+<meta property="og:description" content="A minimal wallet suite for EVM chains: Chrome auto-signing, plus AutoDesktop, a native wallet and dApp browser for macOS and Windows." />
 <meta property="og:url" content="https://auto-wallet.nannan.app/" />
 <meta property="og:image" content="https://auto-wallet.nannan.app/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
@@ -29,7 +29,7 @@
 <meta name="twitter:site" content="@lolieatapple" />
 <meta name="twitter:creator" content="@lolieatapple" />
 <meta name="twitter:title" content="Auto Wallet — Stop clicking Confirm" />
-<meta name="twitter:description" content="Whitelist trusted dApps and let routine transactions sign themselves. Open source Chrome wallet for EVM chains." />
+<meta name="twitter:description" content="Whitelist trusted dApps in Chrome, or use AutoDesktop as a native wallet and dApp browser for macOS and Windows." />
 <meta name="twitter:image" content="https://auto-wallet.nannan.app/og-image.jpg" />
 <meta name="twitter:image:alt" content="Auto Wallet — the auto-signing Chrome wallet" />
 
@@ -64,6 +64,25 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AutoDesktop",
+  "operatingSystem": "macOS, Windows",
+  "applicationCategory": "FinanceApplication",
+  "description": "Native desktop wallet and dApp browser for EVM chains, built with Tauri.",
+  "url": "https://auto-wallet.nannan.app/",
+  "downloadUrl": "https://github.com/Auto-Wallet/auto-desktop/releases/latest",
+  "image": "https://auto-wallet.nannan.app/og-image.jpg",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "lolieatapple", "url": "https://x.com/lolieatapple" },
+  "sameAs": [
+    "https://github.com/Auto-Wallet/auto-desktop",
+    "https://x.com/lolieatapple"
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -75,6 +94,7 @@
       <span class="brand-name">Auto Wallet</span>
     </a>
     <div class="nav-links">
+      <a href="#desktop">Desktop</a>
       <a href="#whitelist">Auto-sign</a>
       <a href="#highlights">Highlights</a>
       <a href="#features">Features</a>
@@ -115,6 +135,10 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55v-2.1c-3.2.7-3.88-1.37-3.88-1.37-.52-1.32-1.28-1.67-1.28-1.67-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.27-5.24-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.95 10.95 0 0 1 5.74 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.13v3.16c0 .31.21.66.79.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
           View source
         </a>
+        <a class="btn-secondary" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M12 7v5M9 10l3 3 3-3"/></svg>
+          Download desktop
+        </a>
       </div>
       <div class="hero-trust">
         <div><b>MIT</b>&nbsp;licensed</div>
@@ -122,6 +146,8 @@
         <div><b>AES-256-GCM</b>&nbsp;+ PBKDF2&nbsp;600k</div>
         <span class="sep"></span>
         <div><b>EIP-6963</b>&nbsp;coexists with MetaMask</div>
+        <span class="sep"></span>
+        <div><b>AutoDesktop</b>&nbsp;native dApp browser</div>
       </div>
     </div>
 
@@ -222,6 +248,107 @@
     </div>
   </div>
 </header>
+
+<!-- ============== DESKTOP ============== -->
+<section class="section section-desktop" id="desktop">
+  <div class="wrap desktop-grid">
+    <div class="desktop-copy">
+      <span class="sec-eyebrow">Desktop wallet</span>
+      <h2 class="sec-title">AutoDesktop gives your dApps a real native window.</h2>
+      <p class="sec-sub">
+        The same wallet idea, rebuilt as a lightweight Tauri app: portfolio, DeFi positions,
+        Ledger and watch-only accounts, plus an embedded dApp browser that injects an EIP-1193
+        provider without making you bounce back to Chrome.
+      </p>
+      <div class="desktop-actions">
+        <a class="btn-primary" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M12 7v5M9 10l3 3 3-3"/></svg>
+          Download AutoDesktop
+        </a>
+        <a class="btn-secondary" href="https://github.com/Auto-Wallet/auto-desktop" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55v-2.1c-3.2.7-3.88-1.37-3.88-1.37-.52-1.32-1.28-1.67-1.28-1.67-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.27-5.24-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.95 10.95 0 0 1 5.74 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.13v3.16c0 .31.21.66.79.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          Desktop source
+        </a>
+      </div>
+      <div class="desktop-points">
+        <div class="desktop-point">
+          <span class="desktop-point-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1"/><path d="M16 12h6v4h-6a2 2 0 0 1-2-2v0a2 2 0 0 1 2-2Z"/></svg>
+          </span>
+          <span><b>Portfolio-first wallet</b> with token balances, DeFi positions, activity, and local history.</span>
+        </div>
+        <div class="desktop-point">
+          <span class="desktop-point-icon coral">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 2v4M16 2v4M8 18v4M16 18v4M2 10h20M2 14h20"/></svg>
+          </span>
+          <span><b>Native dApp browser</b> keeps swaps, bridges, approvals, and notifications inside the app.</span>
+        </div>
+        <div class="desktop-point">
+          <span class="desktop-point-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v10H4z"/><path d="M8 11h8M8 14h5"/></svg>
+          </span>
+          <span><b>macOS and Windows</b> builds are published from GitHub Releases when a new version ships.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="desktop-preview" aria-hidden="true">
+      <div class="desktop-window">
+        <div class="desktop-titlebar">
+          <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+          <span>AutoDesktop</span>
+        </div>
+        <div class="desktop-shell">
+          <aside class="desktop-side">
+            <div class="desktop-brand">
+              <img src="public/icons/cat-transparent.png" alt="" />
+              <b>AutoDesktop</b>
+            </div>
+            <div class="desktop-nav active">Wallet</div>
+            <div class="desktop-nav">Explore</div>
+            <div class="desktop-dapps">Opened dApps</div>
+            <div class="desktop-dapp-pill">XFlows</div>
+            <div class="desktop-dapp-pill">Relay</div>
+          </aside>
+          <main class="desktop-main">
+            <div class="desktop-topbar">
+              <div class="desktop-account"><span></span><b>loli</b><small>0x7521...d5188</small></div>
+              <div class="desktop-network">Ethereum</div>
+            </div>
+            <div class="desktop-balance">
+              <div>
+                <span>Total balance</span>
+                <b>$141,384.88</b>
+                <small>+0.42% · 1h</small>
+              </div>
+              <svg viewBox="0 0 220 80" preserveAspectRatio="none">
+                <path d="M4 56 C36 28 58 42 82 30 S132 18 162 32 198 47 216 34" />
+              </svg>
+            </div>
+            <div class="desktop-quick">
+              <span>Receive</span><span>Send</span><span>Swap / Cross-chain</span>
+            </div>
+            <div class="desktop-content">
+              <div>
+                <div class="desktop-section-title">Tokens</div>
+                <div class="desktop-token"><b>USDC</b><span>$844.60</span></div>
+                <div class="desktop-token"><b>WAN</b><span>$1,370.21</span></div>
+                <div class="desktop-token"><b>ETH</b><span>$273.41</span></div>
+              </div>
+              <div class="desktop-browser">
+                <div class="desktop-url">https://xflows.wanchain.org</div>
+                <div class="desktop-browser-body">
+                  <b>dApp browser</b>
+                  <span>EIP-1193 injected · approvals in native windows</span>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ============== WHITELIST DEMO ============== -->
 <section class="section" id="whitelist">
@@ -821,11 +948,15 @@
     <div class="cta">
       <div class="cta-content">
         <h2>Try it. The cat is worth it.</h2>
-        <p>Free, open source, MIT licensed. Install in three clicks, set up your first whitelist rule in five.</p>
+        <p>Free, open source, MIT licensed. Install the Chrome wallet, or download AutoDesktop when you want a native dApp browser.</p>
         <div class="cta-actions">
           <a class="btn-white" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="21.17" y1="8" x2="12" y2="8"></line><line x1="3.95" y1="6.06" x2="8.54" y2="14"></line><line x1="10.88" y1="21.94" x2="15.46" y2="14"></line></svg>
             Add to Chrome — free
+          </a>
+          <a class="btn-white btn-white-soft" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M12 7v5M9 10l3 3 3-3"/></svg>
+            Download desktop
           </a>
           <a class="btn-outline" href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55v-2.1c-3.2.7-3.88-1.37-3.88-1.37-.52-1.32-1.28-1.67-1.28-1.67-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.27-5.24-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.95 10.95 0 0 1 5.74 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.13v3.16c0 .31.21.66.79.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
@@ -849,6 +980,8 @@
     </div>
     <div class="foot-links">
       <a href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">Desktop download</a>
+      <a href="https://github.com/Auto-Wallet/auto-desktop" target="_blank" rel="noopener">AutoDesktop</a>
       <a href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">Chrome Web Store</a>
       <a href="https://github.com/Auto-Wallet/auto-wallet/blob/main/docs/privacy.html" target="_blank" rel="noopener">Privacy</a>
       <a href="https://github.com/Auto-Wallet/auto-wallet/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
