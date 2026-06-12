@@ -8,8 +8,8 @@
 <meta name="keywords" content="auto wallet, auto-signing wallet, Chrome wallet, desktop wallet, Tauri wallet, EVM wallet, MetaMask alternative, whitelist wallet, dApp browser, web3 wallet, EIP-7702, MV3 wallet" />
 <meta name="author" content="lolieatapple" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#0b0b0f" />
-<meta name="color-scheme" content="dark light" />
+<meta name="theme-color" content="#0b0d0a" />
+<meta name="color-scheme" content="dark" />
 <link rel="canonical" href="https://auto-wallet.nannan.app/" />
 
 <!-- Open Graph -->
@@ -40,7 +40,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 
 <!-- Structured data -->
@@ -84,908 +84,290 @@
 }
 </script>
 </head>
-<body>
+<body id="top">
+
+<!-- custom cursor -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+<!-- scroll progress -->
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- toast -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="#top">
-      <span class="brand-mark"><img src="public/icons/cat-transparent.png" alt="Auto Wallet" /></span>
-      <span class="brand-name">Auto Wallet</span>
-    </a>
+    <button class="brand" id="brandCat" aria-label="Auto Wallet — psst, try clicking me a few times">
+      <span class="brand-mark"><img src="public/icons/cat-transparent.png" alt="" width="34" height="34" /></span>
+      <span class="brand-name">AUTO<em>WALLET</em></span>
+    </button>
     <div class="nav-links">
-      <a href="#desktop">Desktop</a>
-      <a href="#whitelist">Auto-sign</a>
-      <a href="#highlights">Highlights</a>
+      <a href="#playground">Playground</a>
+      <a href="#products">Products</a>
       <a href="#features">Features</a>
       <a href="#security">Security</a>
-      <a href="#eips">EIPs</a>
-      <a href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-gh" href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
-    <a class="nav-cta" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="21.17" y1="8" x2="12" y2="8"></line><line x1="3.95" y1="6.06" x2="8.54" y2="14"></line><line x1="10.88" y1="21.94" x2="15.46" y2="14"></line></svg>
-      Add to Chrome
-    </a>
+    <a class="btn btn-small btn-lime magnetic" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">Add to Chrome</a>
   </div>
 </nav>
 
 <!-- ============== HERO ============== -->
-<header class="hero" id="top">
+<header class="hero" id="hero">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-grain" aria-hidden="true"></div>
+
   <div class="wrap hero-inner">
-    <div class="hero-text">
-      <div class="hero-eyebrow">
-        <span class="dot"></span>
-        Open source · Chrome Extension MV3
-      </div>
-      <h1>
-        Stop clicking <span class="strike">Confirm</span>.<br />
-        Start <span class="spark">auto-signing</span>.
+    <div class="hero-copy">
+      <p class="eyebrow reveal"><span class="tick">●</span> AUTO WALLET × AUTODESKTOP — EVM WALLET SUITE</p>
+      <h1 class="hero-h1">
+        <span class="line"><span class="word">STOP</span></span>
+        <span class="line"><span class="word">CLICKING</span></span>
+        <span class="line"><em class="confirm-word" id="confirmWord"><span id="confirmWordText">Confirm.</span><svg class="strike" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C60 8, 120 20, 170 12 S270 10, 296 13" /></svg></em></span>
       </h1>
-      <p class="hero-sub">
-        A minimal Chrome wallet for EVM chains with a feature MetaMask refuses to ship:
-        <b>per-rule whitelist auto-signing</b>. Trust a dApp, a contract, or a single function
-        selector — Auto Wallet signs the rest while you stay in flow.
-      </p>
-      <div class="hero-ctas">
-        <a class="btn-primary" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="21.17" y1="8" x2="12" y2="8"></line><line x1="3.95" y1="6.06" x2="8.54" y2="14"></line><line x1="10.88" y1="21.94" x2="15.46" y2="14"></line></svg>
-          Install on Chrome
+      <p class="hero-sub reveal">Whitelist the dApps you trust — by <b>domain</b>, <b>contract</b>, and <b>method</b> — and routine transactions sign themselves. In Chrome and on the desktop. You keep the keys, the caps, and the cat.</p>
+      <div class="hero-ctas reveal">
+        <a class="btn btn-lime btn-big magnetic" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">
+          <span class="btn-ic">⊕</span> Add to Chrome — free
         </a>
-        <a class="btn-secondary" href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55v-2.1c-3.2.7-3.88-1.37-3.88-1.37-.52-1.32-1.28-1.67-1.28-1.67-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.27-5.24-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.95 10.95 0 0 1 5.74 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.13v3.16c0 .31.21.66.79.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
-          View source
+        <a class="btn btn-ghost btn-big magnetic" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">
+          <span class="btn-ic">⇣</span> AutoDesktop for macOS / Windows
         </a>
-        <a class="btn-secondary" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M12 7v5M9 10l3 3 3-3"/></svg>
-          Download desktop
-        </a>
-      </div>
-      <div class="hero-trust">
-        <div><b>MIT</b>&nbsp;licensed</div>
-        <span class="sep"></span>
-        <div><b>AES-256-GCM</b>&nbsp;+ PBKDF2&nbsp;600k</div>
-        <span class="sep"></span>
-        <div><b>EIP-6963</b>&nbsp;coexists with MetaMask</div>
-        <span class="sep"></span>
-        <div><b>AutoDesktop</b>&nbsp;native dApp browser</div>
       </div>
     </div>
 
-    <!-- right: extension popup mock -->
-    <div class="popup-stage" aria-hidden="true">
-      <!-- floating toast -->
-      <div class="popup-toast">
-        <div class="bolt">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
-        </div>
-        <div>
-          <div class="t1">Auto-signed</div>
-          <div class="t2">app.uniswap.org · swap()</div>
+    <!-- the machine: a confirm popup that clicks itself -->
+    <div class="machine reveal" id="machine" aria-label="Demo: a confirm dialog that signs itself">
+      <div class="machine-head">
+        <span class="machine-dots"><i></i><i></i><i></i></span>
+        <span class="machine-title" id="machineTitle">app.uniswap.org wants a signature</span>
+      </div>
+      <div class="machine-body">
+        <div class="machine-row"><span>method</span><code id="machineMethod">execute()</code></div>
+        <div class="machine-row"><span>value</span><code id="machineValue">0.20 ETH</code></div>
+        <div class="machine-row"><span>rule</span><code class="ok">whitelist:domain ✓</code></div>
+        <div class="confirm-zone">
+          <button class="confirm-btn" id="confirmBtn">Confirm</button>
+          <div class="ghost-cursor" id="ghostCursor" aria-hidden="true">🐾</div>
+          <div class="stamp" id="stamp">AUTO-SIGNED</div>
         </div>
       </div>
-
-      <div class="popup-frame">
-        <div class="popup-titlebar">
-          <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
-          <span class="ttl">auto-wallet · popup</span>
-        </div>
-        <div class="popup-header">
-          <span class="acct-pill">
-            <span class="pulse"></span>
-            Main
-            <span class="ad">0x7A2c…91eF</span>
-          </span>
-          <span class="icon-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
-          </span>
-        </div>
-        <div class="popup-nav">
-          <div class="tab active">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1"/><path d="M16 12h6v4h-6a2 2 0 0 1-2-2v0a2 2 0 0 1 2-2Z"/></svg>
-            Wallet
-          </div>
-          <div class="tab">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
-            Whitelist
-          </div>
-          <div class="tab">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-            Network
-          </div>
-          <div class="tab">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
-            Logs
-          </div>
-        </div>
-        <div class="popup-body">
-          <div class="popup-hero">
-            <div style="display:flex;align-items:baseline;gap:6px;">
-              <div class="bal-num">12.847</div>
-              <div class="bal-sym" style="margin-left:4px">ETH</div>
-            </div>
-            <div class="addr">0x7A2c · b3F4 · 91eF</div>
-            <div class="act-row">
-              <div class="act">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                Send
-              </div>
-              <div class="act">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                Receive
-              </div>
-            </div>
-          </div>
-          <div class="popup-token">
-            <div class="left">
-              <div class="sym" style="background:#2775ca">U</div>
-              <div class="meta">
-                <div class="s">USDC</div>
-                <div class="n">USD Coin</div>
-              </div>
-            </div>
-            <div class="right">
-              <div class="b">4,820.00</div>
-              <div class="f">$4,820.00</div>
-            </div>
-          </div>
-          <div class="popup-token">
-            <div class="left">
-              <div class="sym" style="background:linear-gradient(135deg,#f3ba2f,#e9a300)">B</div>
-              <div class="meta">
-                <div class="s">BNB</div>
-                <div class="n">BNB Chain</div>
-              </div>
-            </div>
-            <div class="right">
-              <div class="b">3.51</div>
-              <div class="f">$2,143.10</div>
-            </div>
-          </div>
-        </div>
+      <div class="machine-foot">
+        <span>clicks we've saved you since you landed</span>
+        <b class="saved-count" id="savedCount">0</b>
       </div>
-
-      <img class="popup-cat" src="public/icons/cat-transparent.png" alt="" />
     </div>
+  </div>
+
+  <div class="wrap hero-foot reveal">
+    <div class="stat"><b><span data-count="31">0</span></b><span>chains preloaded</span></div>
+    <div class="stat"><b><span data-count="8">0</span></b><span>EIP standards</span></div>
+    <div class="stat"><b><span data-count="600">0</span>k</b><span>PBKDF2 iterations</span></div>
+    <div class="stat"><b>0</b><span>clicks per routine tx</span></div>
   </div>
 </header>
 
-<!-- ============== DESKTOP ============== -->
-<section class="section section-desktop" id="desktop">
-  <div class="wrap desktop-grid">
-    <div class="desktop-copy">
-      <span class="sec-eyebrow">Desktop wallet</span>
-      <h2 class="sec-title">AutoDesktop gives your dApps a real native window.</h2>
-      <p class="sec-sub">
-        The same wallet idea, rebuilt as a lightweight Tauri app: portfolio, DeFi positions,
-        Ledger and watch-only accounts, plus an embedded dApp browser that injects an EIP-1193
-        provider without making you bounce back to Chrome.
-      </p>
-      <div class="desktop-actions">
-        <a class="btn-primary" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M12 7v5M9 10l3 3 3-3"/></svg>
-          Download AutoDesktop
-        </a>
-        <a class="btn-secondary" href="https://github.com/Auto-Wallet/auto-desktop" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55v-2.1c-3.2.7-3.88-1.37-3.88-1.37-.52-1.32-1.28-1.67-1.28-1.67-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.27-5.24-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.95 10.95 0 0 1 5.74 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.13v3.16c0 .31.21.66.79.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
-          Desktop source
-        </a>
-      </div>
-      <div class="desktop-points">
-        <div class="desktop-point">
-          <span class="desktop-point-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1"/><path d="M16 12h6v4h-6a2 2 0 0 1-2-2v0a2 2 0 0 1 2-2Z"/></svg>
-          </span>
-          <span><b>Portfolio-first wallet</b> with token balances, DeFi positions, activity, and local history.</span>
-        </div>
-        <div class="desktop-point">
-          <span class="desktop-point-icon coral">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 2v4M16 2v4M8 18v4M16 18v4M2 10h20M2 14h20"/></svg>
-          </span>
-          <span><b>Native dApp browser</b> keeps swaps, bridges, approvals, and notifications inside the app.</span>
-        </div>
-        <div class="desktop-point">
-          <span class="desktop-point-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v10H4z"/><path d="M8 11h8M8 14h5"/></svg>
-          </span>
-          <span><b>macOS and Windows</b> builds are published from GitHub Releases when a new version ships.</span>
-        </div>
-      </div>
-    </div>
+<!-- ============== CHAIN MARQUEE ============== -->
+<section class="marquee" aria-label="Supported chains">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>ETHEREUM</span><i>✦</i><span>ARBITRUM</span><i>✦</i><span>BASE</span><i>✦</i><span>OPTIMISM</span><i>✦</i><span>POLYGON</span><i>✦</i><span>BNB CHAIN</span><i>✦</i><span>AVALANCHE</span><i>✦</i><span>ZKSYNC ERA</span><i>✦</i><span>SCROLL</span><i>✦</i><span>LINEA</span><i>✦</i><span>BLAST</span><i>✦</i><span>MANTLE</span><i>✦</i><span>GNOSIS</span><i>✦</i><span>CELO</span><i>✦</i><span>FANTOM</span><i>✦</i><span>MOONBEAM</span><i>✦</i><span>CRONOS</span><i>✦</i><span>MODE</span><i>✦</i><span>WANCHAIN</span><i>✦</i><span>POLYGON ZKEVM</span><i>✦</i><span>ARBITRUM NOVA</span><i>✦</i><span>MOONRIVER</span><i>✦</i><span>+ 9 TESTNETS</span><i>✦</i><span>+ ANY CUSTOM EVM</span><i>✦</i>
+  </div>
+</section>
 
-    <div class="desktop-preview" aria-hidden="true">
-      <div class="desktop-window">
-        <div class="desktop-titlebar">
-          <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
-          <span>AutoDesktop</span>
+<!-- ============== PLAYGROUND ============== -->
+<section class="playground" id="playground">
+  <div class="wrap">
+    <p class="kicker reveal">// THE PLAYGROUND</p>
+    <h2 class="h2 scramble reveal" data-text="BUILD A RULE. WATCH IT SIGN.">BUILD A RULE. WATCH IT SIGN.</h2>
+    <p class="section-sub reveal">This is the actual mental model of Auto Wallet. Three dimensions, combined with <code>AND</code> logic.
+    Flip them and watch the incoming feed: matching transactions sign in milliseconds, everything else waits for a human. <em>Gas &amp; value caps always apply.</em></p>
+
+    <div class="pg-grid">
+      <!-- rule builder -->
+      <div class="pg-rule reveal" aria-label="Whitelist rule builder">
+        <div class="pg-rule-head">
+          <span class="pg-rule-title">RULE #1</span>
+          <span class="pg-rule-status" id="ruleStatus">ARMED</span>
         </div>
-        <div class="desktop-shell">
-          <aside class="desktop-side">
-            <div class="desktop-brand">
-              <img src="public/icons/cat-transparent.png" alt="" />
-              <b>AutoDesktop</b>
-            </div>
-            <div class="desktop-nav active">Wallet</div>
-            <div class="desktop-nav">Explore</div>
-            <div class="desktop-dapps">Opened dApps</div>
-            <div class="desktop-dapp-pill">XFlows</div>
-            <div class="desktop-dapp-pill">Relay</div>
-          </aside>
-          <main class="desktop-main">
-            <div class="desktop-topbar">
-              <div class="desktop-account"><span></span><b>loli</b><small>0x7521...d5188</small></div>
-              <div class="desktop-network">Ethereum</div>
-            </div>
-            <div class="desktop-balance">
-              <div>
-                <span>Total balance</span>
-                <b>$141,384.88</b>
-                <small>+0.42% · 1h</small>
-              </div>
-              <svg viewBox="0 0 220 80" preserveAspectRatio="none">
-                <path d="M4 56 C36 28 58 42 82 30 S132 18 162 32 198 47 216 34" />
-              </svg>
-            </div>
-            <div class="desktop-quick">
-              <span>Receive</span><span>Send</span><span>Swap / Cross-chain</span>
-            </div>
-            <div class="desktop-content">
-              <div>
-                <div class="desktop-section-title">Tokens</div>
-                <div class="desktop-token"><b>USDC</b><span>$844.60</span></div>
-                <div class="desktop-token"><b>WAN</b><span>$1,370.21</span></div>
-                <div class="desktop-token"><b>ETH</b><span>$273.41</span></div>
-              </div>
-              <div class="desktop-browser">
-                <div class="desktop-url">https://xflows.wanchain.org</div>
-                <div class="desktop-browser-body">
-                  <b>dApp browser</b>
-                  <span>EIP-1193 injected · approvals in native windows</span>
-                </div>
-              </div>
-            </div>
-          </main>
+
+        <label class="dim" data-dim="domain">
+          <input type="checkbox" id="dimDomain" checked />
+          <span class="dim-switch" aria-hidden="true"></span>
+          <span class="dim-meta"><span class="dim-label">domain</span>
+          <code class="dim-value">app.uniswap.org</code></span>
+        </label>
+        <label class="dim" data-dim="contract">
+          <input type="checkbox" id="dimContract" />
+          <span class="dim-switch" aria-hidden="true"></span>
+          <span class="dim-meta"><span class="dim-label">contract</span>
+          <code class="dim-value">0x68b3…4a51 · UniversalRouter</code></span>
+        </label>
+        <label class="dim" data-dim="method">
+          <input type="checkbox" id="dimMethod" />
+          <span class="dim-switch" aria-hidden="true"></span>
+          <span class="dim-meta"><span class="dim-label">method</span>
+          <code class="dim-value">execute() 0x3593564c</code></span>
+        </label>
+
+        <div class="dim dim-locked">
+          <span class="dim-lock">🔒</span>
+          <span class="dim-meta"><span class="dim-label">safety caps — always on</span>
+          <code class="dim-value">≤ 0.5 ETH · ≤ 300k gas</code></span>
         </div>
+
+        <div class="pg-score">
+          <div><b id="scoreAuto">0</b><span>auto-signed</span></div>
+          <div><b id="scoreHeld">0</b><span>held for you</span></div>
+          <div><b id="scoreClicks">0</b><span>your clicks</span></div>
+        </div>
+      </div>
+
+      <!-- incoming feed -->
+      <div class="pg-feed reveal">
+        <div class="pg-feed-head">
+          <span class="tick">●</span> INCOMING <span class="pg-feed-hint" id="feedHint">rule armed — matching txs sign themselves</span>
+        </div>
+        <div class="pg-feed-list" id="feedList" aria-live="polite"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============== WHITELIST DEMO ============== -->
-<section class="section" id="whitelist">
+<!-- ============== PRODUCTS ============== -->
+<section class="products" id="products">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-eyebrow">Whitelist auto-signing</span>
-      <h2 class="sec-title">Three knobs. AND logic. One signature&#8209;less life.</h2>
-      <p class="sec-sub">
-        Auto Wallet's rule engine combines three independently-toggleable dimensions:
-        domain, contract address, and 4-byte method selector. Toggle any subset — the rest fall back to a gas cap and value cap safety net.
-      </p>
-    </div>
+    <p class="kicker reveal">// TWO HABITATS, ONE BRAIN</p>
+    <h2 class="h2 scramble reveal" data-text="PICK YOUR SHELL.">PICK YOUR SHELL.</h2>
+    <p class="section-sub reveal">Same wallet core, two shells. The extension lives where your tabs are; the desktop app <em>is</em> the browser.</p>
 
-    <div class="demo">
-      <div class="demo-left">
-        <div>
-          <div class="demo-title">Active rule</div>
-          <div class="demo-rule-title">Uniswap routine</div>
-          <div class="demo-host">
-            <svg class="lock" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            app.uniswap.org
-          </div>
+    <div class="prod-grid">
+      <article class="prod-card tilt reveal" id="cardExt">
+        <div class="prod-glow" aria-hidden="true"></div>
+        <div class="prod-tag">BROWSER EXTENSION</div>
+        <h3 class="prod-name">Auto<br/>Wallet</h3>
+        <p class="prod-desc">Minimal auto-signing wallet for Chrome. Coexists politely with MetaMask via EIP-6963, signs rudely fast via whitelist rules.</p>
+        <ul class="prod-list">
+          <li><b>Whitelist auto-signing</b> — domain · contract · method</li>
+          <li><b>Ledger over WebHID</b> — no Ledger Live bridge</li>
+          <li><b>Cross-chain swap</b> built into the popup</li>
+          <li><b>31 chains preloaded</b>, unlimited custom EVM</li>
+          <li><b>AES-256-GCM</b> + PBKDF2 600k iterations</li>
+        </ul>
+        <div class="prod-ctas">
+          <a class="btn btn-lime magnetic" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">Chrome Web Store ↗</a>
+          <a class="btn btn-ghost magnetic" href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">Source</a>
         </div>
-
-        <div class="dim on" data-dim="domain">
-          <div class="dim-head">
-            <div class="dim-label">
-              <span class="k">Domain</span>
-              <span class="v">app.uniswap.org</span>
-            </div>
-            <button class="tg on" type="button" aria-label="Toggle domain"></button>
-          </div>
-          <div class="dim-desc">Match any transaction originating from this exact origin. Strict — no prefix attacks.</div>
-        </div>
-
-        <div class="dim on" data-dim="contract">
-          <div class="dim-head">
-            <div class="dim-label">
-              <span class="k">Contract</span>
-              <span class="v">0x68b3…2D45 <span style="color:var(--ink-4);font-weight:500">· UniversalRouter</span></span>
-            </div>
-            <button class="tg on" type="button" aria-label="Toggle contract"></button>
-          </div>
-          <div class="dim-desc">Restrict to a single contract `to:` address. Useful for locking auto-sign to one router.</div>
-        </div>
-
-        <div class="dim" data-dim="method">
-          <div class="dim-head">
-            <div class="dim-label">
-              <span class="k">Method</span>
-              <span class="v">0x3593564c <span style="color:var(--ink-4);font-weight:500">· execute()</span></span>
-            </div>
-            <button class="tg" type="button" aria-label="Toggle method"></button>
-          </div>
-          <div class="dim-desc">4-byte function selector. Off = any method on the contract matches.</div>
-        </div>
-
-        <div class="demo-foot">
-          <span class="lg-ttl">Safety net (always on)</span>
-          gas&nbsp;≤&nbsp;<code>500,000</code>&nbsp;&nbsp;·&nbsp;&nbsp;value&nbsp;≤&nbsp;<code>0.1&nbsp;ETH</code><br/>
-          non-matching txs route to the manual approval popup.
-        </div>
-      </div>
-
-      <div class="demo-right">
-        <div class="stream-head">
-          <span class="ttl">Incoming transactions</span>
-          <span class="counts">
-            <span class="auto">auto: <b id="cnt-auto">0</b></span>
-            <span class="manual">manual: <b id="cnt-manual">0</b></span>
-          </span>
-        </div>
-        <div class="stream" id="stream"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== HIGHLIGHTS ============== -->
-<section class="section section-tight" id="highlights" style="padding-top:30px">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-eyebrow">Headline features</span>
-      <h2 class="sec-title">Three superpowers no other wallet ships.</h2>
-      <p class="sec-sub">
-        Auto-signing is only safe when you can see what you're about to sign,
-        only useful when you can also <em>watch</em> wallets you don't own, and
-        only complete when you can move value <em>across chains</em> without
-        bouncing through a separate dApp. Auto Wallet gives you all three.
-      </p>
-    </div>
-
-    <div class="hl-grid">
-
-      <!-- Highlight 1: Pre-tx balance change simulation -->
-      <article class="hl hl-sim">
-        <div class="hl-head">
-          <div class="hl-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            #01 · Tripwire
-          </div>
-          <h3 class="hl-title">See every balance change <em>before</em> you sign.</h3>
-          <p class="hl-body">
-            Every transaction — manual or auto — is replayed on a fork first.
-            Auto Wallet returns the <b>signed delta</b> for every address and every
-            ERC-20 involved. If an unknown address quietly gains value, or a token
-            you didn't expect moves, the tripwire fires and routes the tx to manual
-            approval instead. <span class="dim">No more blind-signing a "swap" that
-            secretly drains an approval.</span>
-          </p>
-        </div>
-
-        <!-- Mock simulation preview card -->
-        <div class="sim-card" aria-hidden="true">
-          <div class="sim-card-head">
-            <span class="sim-tag">
-              <span class="sim-pulse"></span>
-              Simulation preview
-            </span>
-            <span class="sim-chain">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 17.97 4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0 4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"/></svg>
-              Ethereum · block <span class="mono">25 410 388</span>
-            </span>
-          </div>
-
-          <div class="sim-rows">
-            <div class="sim-row your">
-              <div class="sim-who">
-                <span class="sim-avatar you">YOU</span>
-                <div>
-                  <div class="sim-addr">0x7A2c…91eF</div>
-                  <div class="sim-label">your wallet</div>
-                </div>
-              </div>
-              <div class="sim-deltas">
-                <span class="d-neg">−0.500 ETH</span>
-                <span class="d-pos">+1,847.32 USDC</span>
-              </div>
-            </div>
-
-            <div class="sim-row">
-              <div class="sim-who">
-                <span class="sim-avatar router">UR</span>
-                <div>
-                  <div class="sim-addr">0x68b3…2D45</div>
-                  <div class="sim-label">UniversalRouter</div>
-                </div>
-              </div>
-              <div class="sim-deltas">
-                <span class="d-zero">net 0</span>
-              </div>
-            </div>
-
-            <div class="sim-row">
-              <div class="sim-who">
-                <span class="sim-avatar pool">V3</span>
-                <div>
-                  <div class="sim-addr">0x88e6…5640</div>
-                  <div class="sim-label">UniV3 USDC/ETH pool</div>
-                </div>
-              </div>
-              <div class="sim-deltas">
-                <span class="d-pos">+0.500 ETH</span>
-                <span class="d-neg">−1,847.32 USDC</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="sim-verdict ok">
-            <span class="v-icon">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            <div class="v-text">
-              <b>No unexpected recipients.</b>
-              <span>Safe to auto-sign · gas 142 871</span>
-            </div>
-            <span class="v-pin mono">sim&nbsp;74bc6b62</span>
-          </div>
-        </div>
-
-        <!-- Supported chains -->
-        <div class="hl-foot">
-          <div class="hl-foot-ttl">Simulation runs on</div>
-          <div class="chain-grid">
-            <span class="chain-chip">Ethereum</span>
-            <span class="chain-chip">BNB Chain</span>
-            <span class="chain-chip">Polygon</span>
-            <span class="chain-chip">Arbitrum</span>
-            <span class="chain-chip">Optimism</span>
-            <span class="chain-chip">Base</span>
-            <span class="chain-chip">Avalanche</span>
-            <span class="chain-chip">Linea</span>
-            <span class="chain-chip">zkSync Era</span>
-            <span class="chain-chip">Scroll</span>
-            <span class="chain-chip">Mantle</span>
-            <span class="chain-chip">Gnosis</span>
-            <span class="chain-chip">Celo</span>
-            <span class="chain-chip">Blast</span>
-            <span class="chain-chip">Mode</span>
-            <span class="chain-chip">Polygon&nbsp;zkEVM</span>
-            <span class="chain-chip">Arbitrum&nbsp;Nova</span>
-            <span class="chain-chip">Fantom</span>
-            <span class="chain-chip">Moonbeam</span>
-            <span class="chain-chip">Cronos</span>
-            <span class="chain-chip native">Wanchain&nbsp;<span class="chip-tag">debug_rpc</span></span>
-            <span class="chain-chip more">+ 9 testnets</span>
-          </div>
-        </div>
+        <div class="prod-num" aria-hidden="true">01</div>
       </article>
 
-      <!-- Highlight 2: Watch-only accounts -->
-      <article class="hl hl-watch">
-        <div class="hl-head">
-          <div class="hl-badge coral">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
-            #02 · View-only
-          </div>
-          <h3 class="hl-title">Watch any wallet. <em>Zero</em> keys required.</h3>
-          <p class="hl-body">
-            Paste an address — that's it. Auto Wallet adds it as a <b>watch-only
-            account</b> you can switch into from the header, with full token
-            balances, history, and dApp connection support (read-only RPC calls
-            answer normally; signing requests are blocked at the provider). Pair
-            it with a hardware wallet for a hot/cold split, monitor a vault, or
-            spy on your favorite whale — without ever holding their keys.
-          </p>
+      <article class="prod-card tilt prod-card-alt reveal" id="cardDesk">
+        <div class="prod-glow" aria-hidden="true"></div>
+        <div class="prod-tag prod-tag-alt">NATIVE DESKTOP</div>
+        <h3 class="prod-name">Auto<br/>Desktop</h3>
+        <p class="prod-desc">A RabbyDesktop-style wallet + dApp browser — rebuilt ultra-light on Tauri 2. Native WebView, tiny installer, zero Electron.</p>
+        <ul class="prod-list">
+          <li><b>Embedded dApp browser</b> with tabs &amp; pinning</li>
+          <li><b>Ledger via native HID</b> — Rust hidapi, real device</li>
+          <li><b>HD vault</b> — BIP-39/44 + Argon2id + AES-256-GCM</li>
+          <li><b>Multi-chain portfolio</b> at a glance</li>
+          <li><b>Keys never enter a webview.</b> Ever.</li>
+        </ul>
+        <div class="prod-ctas">
+          <a class="btn btn-coral magnetic" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">Download ↗</a>
+          <a class="btn btn-ghost magnetic" href="https://github.com/Auto-Wallet/auto-desktop" target="_blank" rel="noopener">Source</a>
         </div>
-
-        <!-- Mock watch-only account card -->
-        <div class="watch-card" aria-hidden="true">
-          <div class="watch-top">
-            <span class="acct-pill">
-              <span class="pulse"></span>
-              Vitalik.eth
-              <span class="ad">0xd8dA…6045</span>
-            </span>
-            <span class="watch-pill">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
-              VIEW-ONLY
-            </span>
-          </div>
-
-          <div class="watch-bal">
-            <div class="watch-bal-num">348.<span class="dec">7102</span></div>
-            <div class="watch-bal-sym">ETH</div>
-          </div>
-
-          <div class="watch-tokens">
-            <div class="watch-row">
-              <span class="t-sym usdc">U</span>
-              <span class="t-name">USDC</span>
-              <span class="t-val mono">12,840.00</span>
-            </div>
-            <div class="watch-row">
-              <span class="t-sym mkr">M</span>
-              <span class="t-name">MKR</span>
-              <span class="t-val mono">214.61</span>
-            </div>
-          </div>
-
-          <div class="watch-sign-blocked">
-            <span class="block-icon">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </span>
-            <div class="block-text">
-              <b>eth_sendTransaction&nbsp;→&nbsp;blocked</b>
-              <span>watch-only · no key material loaded</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hl-foot">
-          <div class="hl-foot-ttl">Use cases</div>
-          <div class="use-list">
-            <div class="use-row">
-              <span class="use-num">01</span>
-              <span class="use-text"><b>Hot/cold pair</b> — sign on Ledger, watch in browser</span>
-            </div>
-            <div class="use-row">
-              <span class="use-num">02</span>
-              <span class="use-text"><b>Treasury audits</b> — monitor a vault without custody risk</span>
-            </div>
-            <div class="use-row">
-              <span class="use-num">03</span>
-              <span class="use-text"><b>Whale tracking</b> — load any ENS, watch their moves live</span>
-            </div>
-          </div>
-        </div>
+        <div class="prod-num" aria-hidden="true">02</div>
       </article>
-
-      <!-- Highlight 3: Built-in cross-chain swap (xflows) -->
-      <article class="hl hl-swap hl-full">
-        <div class="hl-swap-grid">
-          <div class="hl-head">
-            <div class="hl-badge teal">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-              #03 · Cross-chain
-            </div>
-            <h3 class="hl-title">Swap across chains <em>without</em> leaving the popup.</h3>
-            <p class="hl-body">
-              Auto Wallet ships a built-in cross-chain Swap tab powered by the
-              <a class="hl-link" href="https://xflows.wanchain.org/api/v3" target="_blank" rel="noopener"><b>xflows.wanchain.org</b></a>
-              aggregator API. Pick a token on any source chain, a token on any
-              destination chain, and Auto Wallet handles the quote, the
-              ERC-20 approval (with <b>USDT-style allowance reset</b> when needed),
-              the source-chain tx, and tracks the bridge/swap to completion —
-              all inside the popup. No tab-hopping, no copy-pasting bridge UIs,
-              no signing on an unfamiliar site.
-            </p>
-          </div>
-
-          <!-- Mock cross-chain quote card -->
-          <div class="swap-card" aria-hidden="true">
-            <div class="swap-head">
-              <span class="swap-tag">Cross-chain quote</span>
-              <span class="swap-pulse-row">
-                <span class="swap-pulse"></span>
-                live · 12s
-              </span>
-            </div>
-
-            <div class="swap-leg from">
-              <div class="leg-label">You pay</div>
-              <div class="leg-row">
-                <span class="leg-amount mono">1.000</span>
-                <span class="leg-token">
-                  <span class="t-glyph eth">Ξ</span>
-                  ETH
-                </span>
-              </div>
-              <div class="leg-chain">
-                <span class="chain-pill">Ethereum</span>
-              </div>
-            </div>
-
-            <div class="swap-arrow">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-            </div>
-
-            <div class="swap-leg to">
-              <div class="leg-label">You receive</div>
-              <div class="leg-row">
-                <span class="leg-amount mono">3,694.<span class="dec">41</span></span>
-                <span class="leg-token">
-                  <span class="t-glyph usdc">$</span>
-                  USDC
-                </span>
-              </div>
-              <div class="leg-chain">
-                <span class="chain-pill arb">Arbitrum One</span>
-              </div>
-            </div>
-
-            <div class="swap-route">
-              <div class="route-row">
-                <span class="route-k">Route</span>
-                <span class="route-v">Ethereum → Wanchain&nbsp;bridge → Arbitrum</span>
-              </div>
-              <div class="route-row">
-                <span class="route-k">Bridge&nbsp;fee</span>
-                <span class="route-v"><b>0.0032&nbsp;ETH</b> <span class="muted">≈ $11.83</span></span>
-              </div>
-              <div class="route-row">
-                <span class="route-k">ETA</span>
-                <span class="route-v"><b>~ 3&nbsp;min</b></span>
-              </div>
-            </div>
-
-            <div class="swap-action">
-              <span class="swap-btn">Approve&nbsp;&amp;&nbsp;Swap</span>
-              <span class="swap-pwr mono">via xflows.wanchain.org</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hl-foot">
-          <div class="hl-foot-ttl">What the popup does for you, end-to-end</div>
-          <div class="swap-steps">
-            <div class="swap-step">
-              <span class="step-num">01</span>
-              <div class="step-text">
-                <b>Quote</b>
-                <span><code>POST /quote</code> · live USD value, fees, ETA, route</span>
-              </div>
-            </div>
-            <div class="swap-step">
-              <span class="step-num">02</span>
-              <div class="step-text">
-                <b>Approve safely</b>
-                <span>USDT-style <code>approve(0)</code> reset before re-approving</span>
-              </div>
-            </div>
-            <div class="swap-step">
-              <span class="step-num">03</span>
-              <div class="step-text">
-                <b>Build &amp; sign</b>
-                <span><code>POST /buildTx</code> → tripwire&nbsp;sim → your key (or Ledger)</span>
-              </div>
-            </div>
-            <div class="swap-step">
-              <span class="step-num">04</span>
-              <div class="step-text">
-                <b>Track</b>
-                <span><code>GET /status</code> polled until destination tx mines</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
     </div>
   </div>
 </section>
 
-<!-- ============== FEATURES ============== -->
-<section class="section section-tight" id="features" style="padding-top:30px">
+<!-- ============== FEATURES BENTO ============== -->
+<section class="features" id="features">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-eyebrow">Built for power users</span>
-      <h2 class="sec-title">Everything the daily driver needs. Nothing it doesn't.</h2>
-    </div>
+    <p class="kicker reveal">// THE GOOD PARTS</p>
+    <h2 class="h2 scramble reveal" data-text="SMALL WALLET, BIG TEETH.">SMALL WALLET, BIG TEETH.</h2>
 
-    <div class="feat-grid">
-      <div class="feat">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="feat-title">Multi-account, one password</div>
-        <div class="feat-body">Create or import unlimited accounts via private key or mnemonic. Master password unlocks all of them — switch from the header dropdown.</div>
-        <div class="feat-mini"><span class="pill">PRIV-KEY</span><span class="pill">MNEMONIC</span></div>
+    <div class="bento">
+      <div class="bento-cell bento-wide reveal">
+        <h3>Whitelist engine</h3>
+        <p>Three independently toggleable dimensions combined with AND logic. Gas-limit and value caps are always enforced as a safety net — even on whitelisted rules.</p>
+        <code class="bento-code">if (domain ✓ &amp;&amp; contract ✓ &amp;&amp; method ✓) sign(tx) // ≤ caps</code>
       </div>
-
-      <div class="feat">
-        <div class="feat-icon coral">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 11v2M10 11v2M14 11v2M18 11v2"/></svg>
-        </div>
-        <div class="feat-title">Ledger hardware wallet, first-class</div>
-        <div class="feat-body">Plug in over <b>WebHID</b> and Auto Wallet talks to the device directly — no Ledger Live bridge. Signs transactions, <span class="mono" style="font-family:var(--font-mono);font-size:12px">personal_sign</span>, and EIP-712 typed data, with both Live <span class="mono" style="font-family:var(--font-mono);font-size:12px">m/44'/60'/x'/0/0</span> and Legacy <span class="mono" style="font-family:var(--font-mono);font-size:12px">m/44'/60'/0'/x</span> derivation paths. Pair it with a watch-only twin for a clean hot/cold split.</div>
-        <div class="feat-mini"><span class="pill">WebHID</span><span class="pill">EIP-712</span><span class="pill">LIVE&nbsp;+&nbsp;LEGACY</span></div>
+      <div class="bento-cell reveal">
+        <h3>Ledger, both ways</h3>
+        <p>WebHID in the extension, Rust hidapi on desktop. Live + Legacy derivation paths. Hot/cold split with watch-only accounts.</p>
       </div>
-
-      <div class="feat">
-        <div class="feat-icon coral">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-        </div>
-        <div class="feat-title">31 chains preloaded. Add unlimited.</div>
-        <div class="feat-body">22 mainnets — Ethereum, BNB, Polygon, Arbitrum, Optimism, Base, Avalanche, Linea, zkSync Era, Scroll, Mantle, Celo, Blast, Wanchain and more — plus 9 testnets out of the box. Add any EVM chain — dApps can request via <span class="mono" style="font-family:var(--font-mono);font-size:12px">wallet_addEthereumChain</span> with explicit user approval.</div>
-        <div class="feat-mini"><span class="pill">EIP-3085</span><span class="pill">EIP-3326</span><span class="pill">HTTPS-only</span></div>
+      <div class="bento-cell bento-lime reveal">
+        <h3>Cross-chain swap</h3>
+        <p>Quotes, routes, USDT-style <code>approve(0)</code> resets, and status polling — all inside the popup. No bridge-site roulette.</p>
       </div>
-
-      <div class="feat">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
-        </div>
-        <div class="feat-title">ERC-20 tokens, drop-in</div>
-        <div class="feat-body">Paste a contract address — symbol and decimals auto-fetch. Send tokens, watch balances per-chain, with Trust Wallet CDN icons.</div>
-        <div class="feat-mini"><span class="pill">EIP-747</span><span class="pill">AUTO-METADATA</span></div>
+      <div class="bento-cell reveal">
+        <h3>EIP-6963 citizen</h3>
+        <p>Announces itself properly, coexists with MetaMask, and only claims <code>window.ethereum</code> when nobody else is home.</p>
       </div>
-
-      <div class="feat">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
-        </div>
-        <div class="feat-title">Plays nice with MetaMask</div>
-        <div class="feat-body">EIP-6963 multi-provider discovery means Auto Wallet appears in the dApp's wallet picker alongside MetaMask, Rabby, and the rest — no fighting over <span style="font-family:var(--font-mono);font-size:12px">window.ethereum</span>. Run them side-by-side. Auto-injects only if no other wallet is present; force-inject mode available for legacy dApps.</div>
-        <div class="coexist">
-          <span class="coexist-tag aw"><span class="dot"></span>Auto Wallet</span>
-          <span class="plus">+</span>
-          <span class="coexist-tag mm"><span class="dot"></span>MetaMask</span>
-          <span class="plus">+</span>
-          <span class="coexist-tag other"><span class="dot"></span>any EIP-6963</span>
-        </div>
+      <div class="bento-cell reveal">
+        <h3>8 EIPs implemented</h3>
+        <p>1193 · 6963 · 1559 · 712 · 191 · 3085 · 3326 · 747. Typed-data signing included, naturally.</p>
       </div>
-
-      <div class="feat">
-        <div class="feat-icon coral">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <div class="feat-title">Auto-lock that fits you</div>
-        <div class="feat-body">5 minutes for the paranoid, 24 hours for the day-trader, never for the brave. Your call — change it in Settings any time.</div>
-        <div class="feat-mini"><span class="pill">5 MIN</span><span class="pill">1 HR</span><span class="pill">24 HR</span><span class="pill">NEVER</span></div>
+      <div class="bento-cell bento-coral reveal">
+        <h3>Tiny by religion</h3>
+        <p>Tauri 2 + system WebView on desktop. Every dependency is weighed against installer size. When in doubt, it's out.</p>
+      </div>
+      <div class="bento-cell bento-wide reveal">
+        <h3>Open source, end to end</h3>
+        <p>Both wallets are MIT-licensed on GitHub. Audit the rule engine, the crypto, the provider injection — or fork the whole thing and rename the cat.</p>
+        <code class="bento-code">git clone https://github.com/Auto-Wallet/auto-wallet.git</code>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============== SECURITY ============== -->
-<section class="section section-tight" id="security">
+<!-- ============== SECURITY STRIP ============== -->
+<section class="security" id="security">
   <div class="wrap">
-    <div class="sec-panel">
-      <div class="sec-panel-inner">
-        <div>
-          <span class="sec-eyebrow">Security spec</span>
-          <h2 class="sec-title" style="margin-top:14px">Convenient.<br/>Not careless.</h2>
-          <p class="sec-sub" style="margin-top:18px">
-            Auto-signing only works because the foundation is locked down.
-            Keys never leave the encrypted vault. Origins come from Chrome, not the page.
-            Every rule has a gas-and-value safety net you can't disable.
-          </p>
-        </div>
-        <div class="spec-sheet">
-          <div class="spec-row">
-            <span class="k">cipher</span>
-            <span class="v"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>AES-256-GCM</span>
-          </div>
-          <div class="spec-row">
-            <span class="k">key derivation</span>
-            <span class="v"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>PBKDF2 · 600,000 iter.</span>
-          </div>
-          <div class="spec-row">
-            <span class="k">origin source</span>
-            <span class="v"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>sender.origin (Chrome)</span>
-          </div>
-          <div class="spec-row">
-            <span class="k">origin match</span>
-            <span class="v"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>strict equality</span>
-          </div>
-          <div class="spec-row">
-            <span class="k">addChain RPC</span>
-            <span class="v"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>HTTPS only + prompt</span>
-          </div>
-          <div class="spec-row">
-            <span class="k">signer check</span>
-            <span class="v"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>address validated</span>
-          </div>
-          <div class="spec-row">
-            <span class="k">tx safety net</span>
-            <span class="v"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>gas + value caps</span>
-          </div>
-          <div class="spec-row">
-            <span class="k">audit</span>
-            <span class="v"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>open source · MIT</span>
-          </div>
-        </div>
-      </div>
+    <p class="kicker kicker-dark reveal">// PARANOIA, PROFESSIONALLY APPLIED</p>
+    <h2 class="h2 h2-dark scramble reveal" data-text="AUTO-SIGNING ≠ BLIND-SIGNING.">AUTO-SIGNING ≠ BLIND-SIGNING.</h2>
+    <div class="sec-grid">
+      <div class="sec-item reveal"><b>01</b><h4>Origin truth</h4><p>Rules match Chrome's <code>sender.origin</code>, never page-supplied strings. Strict matching kills prefix-domain attacks.</p></div>
+      <div class="sec-item reveal"><b>02</b><h4>Caps are law</h4><p>Value and gas ceilings apply to every auto-signed transaction. A whitelisted dApp still can't drain you.</p></div>
+      <div class="sec-item reveal"><b>03</b><h4>Keys stay home</h4><p>AES-256-GCM at rest, Argon2id/PBKDF2 derivation, auto-lock timers. On desktop, keys never enter any webview.</p></div>
+      <div class="sec-item reveal"><b>04</b><h4>Humans for the weird</h4><p>Anything off-whitelist pops a real approval window. New chains require explicit consent + HTTPS-only RPC.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ============== EIPS ============== -->
-<section class="section section-tight" id="eips">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-eyebrow">Standards</span>
-      <h2 class="sec-title">EIPs that actually got implemented.</h2>
-      <p class="sec-sub">No "coming soon," no half-baked. Eight EIPs covering provider discovery, signing, fees, and chain management.</p>
+<!-- ============== FINAL CTA ============== -->
+<section class="cta" id="cta">
+  <div class="wrap cta-inner">
+    <h2 class="cta-h reveal">NEVER CLICK</h2>
+    <h2 class="cta-h cta-h2 reveal"><em id="ctaConfirm">Confirm</em> AGAIN.</h2>
+    <div class="hero-ctas cta-ctas reveal">
+      <a class="btn btn-lime btn-big magnetic" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">⊕ Add to Chrome</a>
+      <a class="btn btn-ghost btn-big magnetic" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">⇣ Get AutoDesktop</a>
     </div>
-
-    <div class="eips">
-      <div class="eip">
-        <span class="eip-num">EIP-1193</span>
-        <div class="eip-name">JavaScript Provider API</div>
-        <div class="eip-method">window.ethereum.request</div>
-      </div>
-      <div class="eip">
-        <span class="eip-num">EIP-6963</span>
-        <div class="eip-name">Multi-Provider Discovery</div>
-        <div class="eip-method">announceProvider event</div>
-      </div>
-      <div class="eip">
-        <span class="eip-num">EIP-1559</span>
-        <div class="eip-name">Fee Market (Type-2 tx)</div>
-        <div class="eip-method">maxFeePerGas, maxPriorityFee</div>
-      </div>
-      <div class="eip">
-        <span class="eip-num">EIP-712</span>
-        <div class="eip-name">Typed Structured Data</div>
-        <div class="eip-method">eth_signTypedData_v4</div>
-      </div>
-      <div class="eip">
-        <span class="eip-num">EIP-191</span>
-        <div class="eip-name">Personal Sign</div>
-        <div class="eip-method">personal_sign</div>
-      </div>
-      <div class="eip">
-        <span class="eip-num">EIP-3085</span>
-        <div class="eip-name">Add Ethereum Chain</div>
-        <div class="eip-method">wallet_addEthereumChain</div>
-      </div>
-      <div class="eip">
-        <span class="eip-num">EIP-3326</span>
-        <div class="eip-name">Switch Ethereum Chain</div>
-        <div class="eip-method">wallet_switchEthereumChain</div>
-      </div>
-      <div class="eip">
-        <span class="eip-num">EIP-747</span>
-        <div class="eip-name">Watch Asset</div>
-        <div class="eip-method">wallet_watchAsset</div>
-      </div>
-    </div>
+    <p class="cta-fine reveal">Free · Open source (MIT) · Your keys, your caps, your cat</p>
   </div>
 </section>
 
-<!-- ============== CTA + FOOTER ============== -->
-<section class="section section-tight" style="padding-top:0">
-  <div class="wrap">
-    <div class="cta">
-      <div class="cta-content">
-        <h2>Try it. The cat is worth it.</h2>
-        <p>Free, open source, MIT licensed. Install the Chrome wallet, or download AutoDesktop when you want a native dApp browser.</p>
-        <div class="cta-actions">
-          <a class="btn-white" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="21.17" y1="8" x2="12" y2="8"></line><line x1="3.95" y1="6.06" x2="8.54" y2="14"></line><line x1="10.88" y1="21.94" x2="15.46" y2="14"></line></svg>
-            Add to Chrome — free
-          </a>
-          <a class="btn-white btn-white-soft" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M12 7v5M9 10l3 3 3-3"/></svg>
-            Download desktop
-          </a>
-          <a class="btn-outline" href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55v-2.1c-3.2.7-3.88-1.37-3.88-1.37-.52-1.32-1.28-1.67-1.28-1.67-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.27-5.24-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.95 10.95 0 0 1 5.74 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.13v3.16c0 .31.21.66.79.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
-            Star on GitHub
-          </a>
-        </div>
-      </div>
-      <img class="cta-cat" src="public/icons/cat-transparent.png" alt="" />
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="public/icons/cat-transparent.png" alt="" width="28" height="28" />
+      <span>AUTO<em>WALLET</em></span>
     </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap foot-inner">
-    <div class="foot-left">
-      <a class="brand" href="#top">
-        <span class="brand-mark"><img src="public/icons/cat-transparent.png" alt="" /></span>
-        <span class="brand-name" style="font-size:14px">Auto Wallet</span>
-      </a>
-      <span>· MIT · 2026</span>
+    <div class="footer-links">
+      <a href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">auto-wallet</a>
+      <a href="https://github.com/Auto-Wallet/auto-desktop" target="_blank" rel="noopener">auto-desktop</a>
+      <a href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">chrome web store</a>
+      <a href="https://x.com/lolieatapple" target="_blank" rel="noopener">@lolieatapple</a>
     </div>
-    <div class="foot-links">
-      <a href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">Desktop download</a>
-      <a href="https://github.com/Auto-Wallet/auto-desktop" target="_blank" rel="noopener">AutoDesktop</a>
-      <a href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">Chrome Web Store</a>
-      <a href="https://github.com/Auto-Wallet/auto-wallet/blob/main/docs/privacy.html" target="_blank" rel="noopener">Privacy</a>
-      <a href="https://github.com/Auto-Wallet/auto-wallet/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
-    </div>
+    <p class="footer-fine">MIT licensed. Not financial advice. The cat is, however, real.
+      <span class="footer-hint" title="a secret">↑↑↓↓←→←→BA</span>
+    </p>
   </div>
 </footer>
 
