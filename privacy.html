@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy policy — Auto Wallet</title>
+<meta name="description" content="Privacy policy for Auto Desktop and the Auto Wallet website: what stays on your computer, and which services the app contacts." />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0b0d0a" />
+<meta name="color-scheme" content="dark" />
+<link rel="canonical" href="https://auto-wallet.nannan.app/privacy.html" />
+<link rel="icon" href="public/icons/icon128.png" />
+<link rel="apple-touch-icon" href="public/icons/icon128.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<nav class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark"><img src="public/icons/cat-transparent.png" alt="" width="34" height="34" /></span>
+      <span class="brand-name">AUTO<em>WALLET</em></span>
+    </a>
+    <div class="nav-links">
+      <a href="/#cardDesk">Auto Desktop</a>
+      <a href="code-signing-policy.html">Code signing policy</a>
+      <a href="privacy.html" aria-current="page">Privacy policy</a>
+    </div>
+  </div>
+</nav>
+
+<main class="legal">
+  <div class="wrap legal-inner">
+    <p class="kicker">// AUTO DESKTOP</p>
+    <h1>Privacy policy</h1>
+    <p class="legal-lead">This policy covers <a href="/#cardDesk">Auto Desktop</a>, the native wallet and dApp browser for macOS and Windows, and this website at auto-wallet.nannan.app.</p>
+    <p>Auto Desktop is not a hosted wallet. Signing happens on your computer. The requests below do not include your recovery phrase, your wallet password, or your private keys. The one exception is an OKX API secret, and only if you choose to save one: that secret is sent to OKX so the app can read the account you connected.</p>
+    <p>There is no advertising SDK in the app. Operators of the services below still see your IP address and ordinary connection data, plus the fields named here. Their own policies apply to what they store.</p>
+
+    <h2>What stays on your computer</h2>
+    <ul>
+      <li>The encrypted vault (Argon2id and AES-256-GCM), recovery phrase, private keys, and the password that unlocks them.</li>
+      <li>Portfolio history, settings, connected sites, and diagnostic logs. Logs are written to a local file and are not uploaded by the app.</li>
+      <li>OKX account credentials, if you save them, in the operating system credential store. Ledger signing stays on the USB connection to the device. The app does not contact a Ledger cloud service to sign.</li>
+    </ul>
+
+    <h2>Chains, dApps, and explorers</h2>
+    <p>These contacts happen because you use the wallet or open a page.</p>
+    <ul>
+      <li><strong>RPC endpoints.</strong> Balances, contract reads, and broadcasts go to the RPC URL configured for each chain. Built-in chains use public endpoints, including PublicNode (<code>*.publicnode.com</code>) and chain operators such as BNB Chain, zkSync, Sonic, X Layer, World Chain (a public Alchemy endpoint), Astar, Wanchain, Metis, Celo, and Polygon zkEVM. A request can include your public address and the call or transaction you make. You can replace an RPC URL in Settings. PublicNode requests may include the project’s API key in the URL. <a href="https://www.publicnode.com/privacy" target="_blank" rel="noopener">PublicNode privacy policy</a>.</li>
+      <li><strong>dApp browser.</strong> Pages you open load inside the app. Those sites can set cookies and see your IP address. If you approve a connection, the site receives the public address you selected. Icons for built-in and saved dApps are requested from those sites.</li>
+      <li><strong>Block explorers.</strong> Opening a transaction or token follows a link to that chain’s explorer, such as Etherscan. The explorer receives the address or hash in the link.</li>
+    </ul>
+
+    <h2>Prices and DeFi positions</h2>
+    <ul>
+      <li><strong>CoinGecko</strong> (<code>api.coingecko.com</code>). The wallet asks for USD prices by asset id, such as <code>ethereum</code>. These requests do not include your wallet address. <a href="https://www.coingecko.com/en/privacy" target="_blank" rel="noopener">CoinGecko privacy policy</a>.</li>
+      <li><strong>Zerion</strong> (<code>api.zerion.io</code>) and <strong>DeBank</strong> (<code>pro-openapi.debank.com</code>). DeFi positions are off until you enable them for an account. When you do, the app sends that account’s public address. Zerion is the primary source. DeBank is used for positions Zerion does not return, including some Uniswap v4 liquidity. The project’s API keys authenticate those calls. Some built-in positions, such as Wanchain XStake, are read from the chain RPC instead. <a href="https://zerion.io/privacy-policy" target="_blank" rel="noopener">Zerion privacy policy</a>. <a href="https://debank.com/privacy" target="_blank" rel="noopener">DeBank privacy policy</a>.</li>
+    </ul>
+
+    <h2>Swaps, Safe, and OKX</h2>
+    <p>These run when you use the feature.</p>
+    <ul>
+      <li><strong>Relay</strong> (<code>api.relay.link</code>). A swap quote includes the wallet address and recipient you set, the tokens, and the amount. Status checks use Relay’s request id.</li>
+      <li><strong>XFlows</strong> (<code>xflows.wanchain.org</code>). A quote, a built transaction, or a status check includes the from and to addresses, the tokens, and the amount.</li>
+      <li><strong>OKX DEX</strong> (<code>web3.okx.com</code>). Token lists and quotes send token addresses and amounts. Building a swap also sends your wallet address. History checks send the transaction hash.</li>
+      <li><strong>OKX account</strong> (<code>www.okx.com</code>, or the US, EEA, or Turkey host you pick). Only if you save an OKX API key. The app sends that key to OKX to read assets and related earn data. <a href="https://www.okx.com/help/privacy-policy-statement" target="_blank" rel="noopener">OKX privacy policy</a>.</li>
+      <li><strong>Safe</strong> (<code>api.safe.global</code>, or a service URL you enter). If you import a Safe, the app sends the Safe address. Confirming a Safe transaction submits your confirmation signature. <a href="https://safe.global/privacy" target="_blank" rel="noopener">Safe privacy policy</a>.</li>
+    </ul>
+
+    <h2>Transaction preview</h2>
+    <p>When an approval window opens for a transaction, the app sends that transaction — chain, your public address, destination, calldata, value, and gas — to <code>balance-change-simulate-api.wanscan.org</code> so the window can show estimated balance changes. The app does not offer a separate switch to turn this preview off. Contract deployments are not sent, because the preview needs a destination.</p>
+
+    <h2>Updates</h2>
+    <p>While Auto Desktop is open it checks for a new version about once an hour and may download it before you choose to install. You can dismiss a downloaded update. Checks and downloads use GitHub (<code>github.com</code> and <code>api.github.com</code>) for <a href="https://github.com/Auto-Wallet/auto-wallet-desktop" target="_blank" rel="noopener">Auto-Wallet/auto-wallet-desktop</a>. They do not include your wallet address or keys. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub privacy statement</a>.</p>
+
+    <h2>This website</h2>
+    <p>auto-wallet.nannan.app is a static site. It does not ask you to connect a wallet. Pages load fonts from Google (<code>fonts.googleapis.com</code> and <code>fonts.gstatic.com</code>). The home page also loads a telemetry script from VibeCafé (<code>vibecafe.ai</code>). <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google privacy policy</a>.</p>
+
+    <h2>Code signing</h2>
+    <p>Windows code signing for Auto Desktop is described in the <a href="code-signing-policy.html">Code signing policy</a>.</p>
+
+    <p class="legal-meta">Last updated 29 October 2026, from the public Auto Desktop source on that date.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <a class="footer-brand" href="/">
+      <img src="public/icons/cat-transparent.png" alt="" width="28" height="28" />
+      <span>AUTO<em>WALLET</em></span>
+    </a>
+    <div class="footer-links">
+      <a href="/#cardDesk">Auto Desktop</a>
+      <a href="https://github.com/Auto-Wallet/auto-wallet-desktop/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a href="code-signing-policy.html">Code signing policy</a>
+      <a href="privacy.html">Privacy policy</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
