@@ -71,14 +71,14 @@
   "name": "AutoDesktop",
   "operatingSystem": "macOS, Windows",
   "applicationCategory": "FinanceApplication",
-  "description": "Native desktop wallet and dApp browser for EVM chains, built with Tauri.",
-  "url": "https://auto-wallet.nannan.app/",
-  "downloadUrl": "https://github.com/Auto-Wallet/auto-desktop/releases/latest",
+  "description": "Native desktop wallet and dApp browser for EVM chains on macOS and Windows. Create or import a wallet, view balances, open dApps, and approve each signature in a separate window.",
+  "url": "https://auto-wallet.nannan.app/#cardDesk",
+  "downloadUrl": "https://github.com/Auto-Wallet/auto-wallet-desktop/releases/latest",
   "image": "https://auto-wallet.nannan.app/og-image.jpg",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "lolieatapple", "url": "https://x.com/lolieatapple" },
   "sameAs": [
-    "https://github.com/Auto-Wallet/auto-desktop",
+    "https://github.com/Auto-Wallet/auto-wallet-desktop",
     "https://x.com/lolieatapple"
   ]
 }
@@ -116,6 +116,7 @@
       <a href="#products">Products</a>
       <a href="#features">Features</a>
       <a href="#security">Security</a>
+      <a href="code-signing-policy.html">Code signing policy</a>
       <a class="nav-gh" href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
     <a class="btn btn-small btn-lime magnetic" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">Add to Chrome</a>
@@ -135,15 +136,16 @@
         <span class="line"><span class="word">CLICKING</span></span>
         <span class="line"><em class="confirm-word" id="confirmWord"><span id="confirmWordText">Confirm.</span><svg class="strike" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C60 8, 120 20, 170 12 S270 10, 296 13" /></svg></em></span>
       </h1>
-      <p class="hero-sub reveal">Whitelist the dApps you trust — by <b>domain</b>, <b>contract</b>, and <b>method</b> — and routine transactions sign themselves. In Chrome and on the desktop. You keep the keys, the caps, and the cat.</p>
+      <p class="hero-sub reveal">Whitelist the dApps you trust — by <b>domain</b>, <b>contract</b>, and <b>method</b> — and routine transactions sign themselves in Chrome. Auto Desktop, for macOS and Windows, is a native wallet and dApp browser where you approve each signature. You keep the keys, the caps, and the cat.</p>
       <div class="hero-ctas reveal">
         <a class="btn btn-lime btn-big magnetic" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">
           <span class="btn-ic">⊕</span> Add to Chrome — free
         </a>
-        <a class="btn btn-ghost btn-big magnetic" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">
+        <a class="btn btn-ghost btn-big magnetic" href="https://github.com/Auto-Wallet/auto-wallet-desktop/releases/latest" target="_blank" rel="noopener">
           <span class="btn-ic">⇣</span> AutoDesktop for macOS / Windows
         </a>
       </div>
+      <p class="download-policy reveal">Auto Desktop holds your keys on this computer, shows balances across EVM chains, and opens dApps in its own browser. Connecting and signing happen only after you approve them. <a href="code-signing-policy.html">Code signing policy</a></p>
     </div>
 
     <!-- the machine: a confirm popup that clicks itself -->
@@ -274,18 +276,19 @@
         <div class="prod-glow" aria-hidden="true"></div>
         <div class="prod-tag prod-tag-alt">NATIVE DESKTOP</div>
         <h3 class="prod-name">Auto<br/>Desktop</h3>
-        <p class="prod-desc">A RabbyDesktop-style wallet + dApp browser — rebuilt ultra-light on Tauri 2. Native WebView, tiny installer, zero Electron.</p>
+        <p class="prod-desc"><b>What it does.</b> Auto Desktop is a native wallet and dApp browser for EVM chains on macOS and Windows. Create a wallet, import a recovery phrase or private key, or connect a Ledger. See balances across chains, open DeFi sites in an embedded browser with tabs, and connect, sign, and send from those sites. Every signature waits for your approval in a separate window. Private keys stay in the app and do not enter web pages.</p>
         <ul class="prod-list">
           <li><b>Embedded dApp browser</b> with tabs &amp; pinning</li>
-          <li><b>Ledger via native HID</b> — Rust hidapi, real device</li>
+          <li><b>Approval window</b> for transactions, personal messages, and typed data</li>
+          <li><b>Ledger via native HID</b> — Rust hidapi, on the device</li>
           <li><b>HD vault</b> — BIP-39/44 + Argon2id + AES-256-GCM</li>
-          <li><b>Multi-chain portfolio</b> at a glance</li>
-          <li><b>Keys never enter a webview.</b> Ever.</li>
+          <li><b>Multi-chain portfolio</b>, plus optional swaps and Safe accounts</li>
         </ul>
         <div class="prod-ctas">
-          <a class="btn btn-coral magnetic" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">Download ↗</a>
-          <a class="btn btn-ghost magnetic" href="https://github.com/Auto-Wallet/auto-desktop" target="_blank" rel="noopener">Source</a>
+          <a class="btn btn-coral magnetic" href="https://github.com/Auto-Wallet/auto-wallet-desktop/releases/latest" target="_blank" rel="noopener">Download ↗</a>
+          <a class="btn btn-ghost magnetic" href="https://github.com/Auto-Wallet/auto-wallet-desktop" target="_blank" rel="noopener">Source</a>
         </div>
+        <p class="prod-policy"><a href="code-signing-policy.html">Code signing policy</a></p>
         <div class="prod-num" aria-hidden="true">02</div>
       </article>
     </div>
@@ -354,9 +357,10 @@
     <h2 class="cta-h cta-h2 reveal"><em id="ctaConfirm">Confirm</em> AGAIN.</h2>
     <div class="hero-ctas cta-ctas reveal">
       <a class="btn btn-lime btn-big magnetic" href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">⊕ Add to Chrome</a>
-      <a class="btn btn-ghost btn-big magnetic" href="https://github.com/Auto-Wallet/auto-desktop/releases/latest" target="_blank" rel="noopener">⇣ Get AutoDesktop</a>
+      <a class="btn btn-ghost btn-big magnetic" href="https://github.com/Auto-Wallet/auto-wallet-desktop/releases/latest" target="_blank" rel="noopener">⇣ Get AutoDesktop</a>
     </div>
     <p class="cta-fine reveal">Free · Open source (MIT) · Your keys, your caps, your cat</p>
+    <p class="download-policy reveal">Auto Desktop is a native EVM wallet and dApp browser for macOS and Windows. <a href="code-signing-policy.html">Code signing policy</a></p>
   </div>
 </section>
 
@@ -369,8 +373,10 @@
     </div>
     <div class="footer-links">
       <a href="https://github.com/Auto-Wallet/auto-wallet" target="_blank" rel="noopener">auto-wallet</a>
-      <a href="https://github.com/Auto-Wallet/auto-desktop" target="_blank" rel="noopener">auto-desktop</a>
+      <a href="https://github.com/Auto-Wallet/auto-wallet-desktop" target="_blank" rel="noopener">auto-desktop</a>
       <a href="https://chromewebstore.google.com/detail/auto-wallet/bckpgmilngeoccpkmoeebmbjndegfojb" target="_blank" rel="noopener">chrome web store</a>
+      <a href="code-signing-policy.html">Code signing policy</a>
+      <a href="privacy.html">Privacy policy</a>
       <a href="https://x.com/lolieatapple" target="_blank" rel="noopener">@lolieatapple</a>
     </div>
     <p class="footer-fine">MIT licensed. Not financial advice. The cat is, however, real.
